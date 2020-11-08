@@ -1,0 +1,887 @@
+Comptia Security+ Notes
+
+CHAPTER I - Networking Basics and Terminology
+
+IPv6 Address types:
+
+	1. From the addressing type:
+		a. Unicast - used for one-to-one communications
+		b. Multicast - used to send data to a group of systems
+		c. Anycast - applies to any group of systems providing a service. Sending the data to the unicast address could have the data sent to any computer in the anycast address. 
+	2. Unicast addresses ca be: 
+		a. Global unicast (public; internet routable; similar to the Public IPv4 address)
+		b. Site-local unicast - always starts with fec0 (equivalent to a private IPv4 address - 10.0.0.0/24)
+		c. Link-local unicast - always starts with fe80 (equivalent to an APIPA address; can communicate with other addresses on the same link) 
+
+2001 - are special-purpose addresses reserved by IANA
+
+
+Diversity of defense - use different products / manufacturers for different layers, in order to prevent a single exploitable vulnerability to allow the attacker full access. 
+
+
+CHAPTER II - Introduction to Security Terminology
+
+Identification - username
+Authentication - password, smartcard, token, etc.
+Authorization - assigning access to resources (permissions, ACLs, door access)
+
+Due care - implement a measure
+Due dilligence - make sure the measure is being effective and that it is complied with
+
+Trusted OS - a system that has been evaluated to determine if the system follows strict security practices (such as Mandatory Access Control). The new standard for security evaluation is called common criteria. 
+
+CHAPTER III - Security Policies and Standards
+
+Security control - any mechanism that is used to protect an asset within the organization (firewall, IDS...)
+Security policy sub-chapters
+	Overview
+	Scope
+	Policy
+	Enforcement
+	Definitions
+	Revision History
+
+CHAPTER IV - Types of Attacks
+
+I. Network attacks
+	1) DoS / DDoS
+	2) Spoofing (MAC, IP, Email)
+	3) Sniffing
+	4) Replay
+	5) MitM
+	6) DNS Poisoning
+	7) ARP Poisoning
+	8) SPAM
+	9) Privilege escalation
+	10) Port Scanning
+	11) Pharming - leading someone to the wrong site by modifying DNS or the hosts file.
+	12) Spim (Spam on IM platforms)
+	13) Spear phishing
+	14) Antiquated protocols
+	15) Session hijacking
+	16) Null sessions (mostly deprecated)
+	17) Domain kiting (register domain for the free / grace period)
+	18) Vishing - Phishing over Voice / VoIP
+
+II. Password attacks
+	1) Dictionary attack
+	2) Brute-forcing attack
+	3) Hybrid attacks
+	4) Birthday (collision) attacks
+	5) Rainbow table attacks
+
+III. Application attacks
+	1) SQL Injection
+	2) Buffer overflow
+	3) XSS
+	3) CSRF
+	4) Directory traversal / command injection 
+	5) LDAP Injection - attempt to make calls to a directory database
+
+
+
+Pharming is the term used for leading someone to the wrong site by modifying DNS or the hosts file.
+Remember that the hacker could lead you to the wrong web site by poisoning the DNS cache or by modifying the hosts file after compromising a system.
+
+
+Smurf attack - ICMP Amplification attack
+
+netstat -ano - full stats, including the PID of the program that listens to a specific port. 
+tasklist (on Windows machines) - pair PIDs with program filenames
+
+
+CHAPTER V - System Security Threats
+
+Virus / Malware types:
+	1. Executable virus - attached to an exe file; not run until you run the file
+	2. Boot sector virus - prevents from booting by overwriting the boot sector
+	3. Macro virus - VisualBasic; spread via documents
+	4. Logic bomb - delayed action
+	5. Worm - replicates via network protocols, email, external media
+	6. Trojan - remote control for the attacker
+	7. Sypware - monitors the user
+	8. Adware - serves ads
+	9. Spam
+	10. Rootkit - gives administrative privileges to a hacker (Trojans are an application level rootkit)
+		a. Application level
+		b. Library level - replaces a legit DLL
+		c. Kernel level - replaces a device driver
+		d. Virtualized - the rootkit runs before the OS, and thus is supposedly undetectable
+		e. Firmware - planted in the firmware of a device
+	11. Botnet
+	12. Keylogger (hardware or software, monitors the keystrokes)
+	13. Backdoors (generally more of an approach than a method. Hackers use for example Trojans to create backdoors)
+	14. Ransomware
+	15. Polymorphic and Armored - shape-shifting and analysis resistant malware
+
+
+
+
+Bluetooth attacks:
+		Bluesnarfing - connect to phone and extract data
+		Bluejacking - send messages from a phone to the other
+		Bluebugging - gain access and use full capabilities, including the issuing of AT commands
+
+Call-back security - the device disconnects from the original call and calls a predefined number
+
+
+CHAPTER VI - Mitigating Security Threats
+
+Use a Network Policy Server (NPS) to restrict a system from using the network if it has missing patches or A/V definitions. 
+
+A security baseline is a standard configuration that has been approved as being the configuration needed to place a system in a secure state. 
+
+Application security best practices:
+
+1. Application configuration baseline (config the app for the least privilege / most restrictive setting required)
+2. Application hardening (disable features in the app that are not required - for example, desktop sharing for the IM)
+3. Application patch management
+4. XSS Prevention - validate input, sanitize output
+5. CSRF Prevention - Do not use "Remember me"; Developers can set the cookies to expire in a very short time
+	CSRF is a type of request where a page may have code that references another site and that uses the user's cookie to authenticate automatically, if that cookie didn't expire. 
+6. Server-side vs. client-side validation - implement input validation both server-side and client-side
+7. NoSQL vs. SQL databases - NoSQL - Big Data; SQL - insert and update records in the DB
+
+
+Server hardening best practices:
+
+1) All servers - patch, configure policies, account lockout, disable unnecessary accounts, rename default accounts, set strong passwords
+2) HTTP Servers - place in the DMZ (between the external / perimeter firewall and the internal firewall), disable server-side includes that aren't used, enable SSL
+3) DNS Servers - limit "zone transfers" to the DNS server (an attacker could force a zone transfer and get the info on the internal IP Schema)
+4) DHCP Servers - create a scope (number of IP addresses for allocation) enough for the number of systems, use address reservation (tie IP to MAC)
+5) SMTP Servers - disable SMTP relaying
+6) FTP Servers - limit upload rights, decide whether to allow anon access, force authentication in a secure way!!!
+
+Mitigating Risks in Static Environments
+	Methods of Mitigation
+		a. Network segmentation
+		b. 
+
+
+CHAPTER VII - Implementing System Security
+
+The most restrictive permissions with regard to file rights always applies. 
+(For example, if NTFS permission is Read and Share permission is Change, the most restrictive - Read is applied, BUT if a user has Read permissions on a folder as part of "Group A" and Full access as part of "Group B", the most encompassing permissions will be used)
+
+
+CHAPTER VIII - Securing the Network Infrastructure
+
+Firewalls
+
+The first rule that applies to the packet, is the rule the packet follows.
+
+Types of firewalls:
+
+	1) Packet-filtering Firewall:
+			- a.k.a. Stateless inspection firewall 
+			- filters based on the TCP/IP header (source / destination IP / port)
+			- can be bypassed for example by IP spoofing techniques
+	2) Stateful Packet Inspection (SPI) Firewall
+			- looks at the context of the conversation between the parties to determine if a certain packet is supposed to be received in a certain point of a conversation
+			- example - an attacker trying to send a packet to port 80 without first performing the Three-way Handshake
+	3) Application Firewall 
+			- knows to look inside the packet - for example, checks for the port 80 traffic to be really HTTP
+
+
+IPTables - there are three main tables used
+	1. Input - what traffic is allowed to pass through the network card to the Linux system
+	2. Output - traffic allowed to pass through the network card out of the Linux system
+	3. Forward - traffic that should be forwarded from the Linux system to another system
+
+Firewall configurations:
+
+	1) Dual-Home Host Firewall - computer with two physical interfaces with the routing capabilites disabled to allow the firewall software / application
+	2) Screened-Host Firewall - Screen router (provide packet filtering in front of the actual firewall) in front of the firewall
+	3) Screened-Subnet Firewall - add another screen router facing towards the intranet to prevent insider attacks and to increase the number of layers that need to be byassed. The internal router is configured to accept data from the firewall only, preventing a potential bypass
+	4) Security Zones - DMZ - the zone between an internal and an external firewall where the services that need Internet visibility sit.  
+
+Other security devices and technologies
+
+1) Proxy server
+
+2) Web application firewall
+
+3) Web security gateway - protects the network from the malicious content online, can scan content for malicious code, 
+
+IDS types: signature-based IDS, anomaly-based IDS, heuristics-based IDS 
+
+Network access control
+Allows control of who gains access to a wired or wireless network
+
+
+CHAPTER IX - Wireless Networking and Security
+
+Bluetooh - 1 Mbps
+
+CHAPTER X - Authentication
+
+
+Multi-factor authentication refers to the TYPES of authentication used, not the number of authentications (for example: fingerprint and retina does not count as multi-factor because they are both "something you are")
+
+Access tokens:
+When a user logs on to a system / network, an access token is created and is used to determine access. It contains the following information:
+
+	a. Security identifier (SID - unique number assigned to the user)
+	b. Group security identifiers - a list of the groups that the user is a member of
+	c. Primary group identifier - the group that becomes the owner of files and directories
+	d. Access rights - during logon, Windows determines the rights you have on the system (for example, Change system time) and stores the information in the Access Token 
+
+Authentication protocols
+
+Take the username and password provided by the user and pass them to the authentication server. 
+
+Types of authentication
+	a. Anonymous authentication
+	b. Basic authentication - passes the username and password in cleartext to the authentication server
+	c. Integrated Windows authentication - sends the username and pasword encrypted
+	d. Kerberos - mutual athentication protocol. Kerberos uses a Key Distribution Center (KDC) server to issue tickets that are needed in order for a client to request a service from any other server on the network. PLM Complicat si de cacat. 
+
+Remote access authentication:
+
+Two types - Remote Access Services (RAS) and Virtual Private Network (VPN)
+
+Protocols:
+	- PAP - Password Authentication Protocol - is CLEARTEXT
+	- CHAP - Challenge Handshake Authentication Protocol
+			1. server: send challenge
+			2. client: challenge + password via MD5 = hash value
+			3. server: compare hash with hash created with the password stored ON the server and grant / deny access
+	- MS-CHAP - Microsoft Challenge Handshake - uses MD4 instead of MD5
+	- MS-CHAPv2 - also authenticates the server to the client
+	- EAP - Extensible Authentication Protocol
+
+
+
+Authentication Services (AAA - Triple A services):
+
+	1. Authentication - validate credentials
+	2. Authorization - grant access to resources
+	3. Accounting - logging the activity
+
+Examples of Authentication Services: RADIUS, DIAMETER, TACACS+
+
+RADIUS - Remote Access Dial-in User Service
+Older, uses UDP for communication, can authenticate IEEE 802.1x (WPA2 Enterprise)
+DIAMETER - Newer, more performance, and reliability, uses TCP for communicating
+
+
+CHAPTER XI - Access Control
+
+Types of security controls:
+
+	1. Administrative controls (policy, procedure, guideline)
+	2. Technical controls (firewall, IDS, password)
+	3. Physical controls (locks, doors, security guards)
+	4. Operational controls - controls that are part of day-to-day operations to keep the activity going (e.g. backups, change management)
+
+Classes of security controls:
+
+	1. Preventative control - also known as deterrent control - aims to prevent the incident from occuring (e.g. cable lock)
+	2. Corrective control
+	3. Detective control
+	4. Deterrent control - discourages someone from performing and action without preventing it per se (e.g. a security policy provisioning disciplinary measures)
+	5. Compensating control - a type of control put in place to mitigate the residual security risk after other controls have been put in place
+
+Access control models
+
+	1. Discretionary Access Control - 
+			- model that grants access to a resouce based on a Discretionary Access Control List (DACL);  
+			- the DACL is a listing of users or groups (known as security principals) who are granted access to a resource, and the DACL determines what type of access they are granted;
+			- in M$ environments, each security principal is assigned a Security Identifier (SID) on which an access token is generated; 
+			- the access token contains the SID of the user, as well as the SIDs of any groups the user belongs to.
+	2. Mandatory Access Control 
+			- the user is assigned a "clearance level" 
+			- the data and other assets are assigned classification labels; 
+			- a user can access information with a classification level equivalent or lower than the clearance level assigned to him / her
+	3. Role-Based Access Control (RBAC)
+			- the system grants special privileges to different roles;
+			- when a user is assigned to a role, he / she inherits the privileges allocated to the role;
+	4. Rule-Based Access Control (also RBAC)
+			- means defining a set of rules on a system that allow or forbid certain actions to occur;
+			- examples: firewall rules, routing rules
+
+Implementing Access Control
+
+	1. Using Security Groups
+	2. Rights and privileges
+	3. Securing Files and Printers - permissions 
+	4. Access Control Lists (ACLs) - routers, firewalls
+	5. Group Policies
+	6. Account Restrictions - expiration, password complexity...
+
+
+CHAPTER XII - Introduction to Cryptography
+
+Cryptography offers three types of core services:
+	1. Encryption
+	2. Hashing
+	3. Authentication
+
+1. Encryption
+	- ensures confidentiality by converting data from plaintext to ciphertext
+	- uses encryption algorhytms to do the conversion
+
+		Types of cyphers:
+			a. Substitution ciphers 
+					- substitute a character with another (the same each time)
+					- example: Caesar, ROT13 
+			b. Transposition ciphers - shifting charactes a number of places
+					- Example: Plaintext: Glen
+							   Ciphertext: enGl
+			c. Repeating key
+			d. Vigenere Cipher
+
+RSA-128 (assymetric) is considered stronger than the 56-bit DES
+
+2. Hashing
+	- used to maintain the integrity of the information
+
+Hashes:
+MD5 - 128 bit
+SHA-1 - 160 bit
+SHA-256 - 256 bit
+
+3. Authentication
+	- generally, the sender's private key is used to sign the message
+
+
+XOR
+1+1=0
+1+0=1
+0+1=1
+0+0=0
+
+VPN
+
+Three main methods:
+	1. PPTP - Point-to-Point Tunneling Protocol 
+					- older VPN protocol
+					- common in M$ environments
+					- uses GRE (Generic Routing Encapsulation) to transport the PPP packets, but the M$ Point-to-Point Encryption (MPPE) to encrypt the traffic
+					- ports to open: 1732/TCP (control port), protocol ID 47
+	2. L2TP - Layer 2 Tunneling Protocol
+					- newer protocol
+					- uses IPSec
+					- ports to open: 500/UDP (key exchange), 5500/UDP (IPSec NAT), 1701/UDP
+	3. Secure Socket Transport Protocol
+					- newest
+					- uses SSL to encrypt
+					- ports to open: 443
+
+Non-repudiation uses the sender's PRIVATE key to encrypt the text, so that anybody who has the public key can decrypt the message. This doesn't guarantee confidentiality, but it guarantees non-repudiation. 
+
+
+Chapter XIII - Managing a Public Key Infrastructure
+
+A certificate is a file that is used to store the public key (and sometimes the private key) and associates the key with an entity such as a person or organization. 
+
+The certificate also contains information about the owner of the public key. 
+The certificate contains the following information:
+	- Public key
+	- Algorithm
+	- Serial Number
+	- Subject - the owner
+	- Issuer
+	- Validity (from and to)
+	- Thumbprint algorithm - the algorithm used to create the hash value for the cert
+	- Hash value of the certificate
+
+
+Certificate authorities (CAs):
+	Two types: 
+		Public CA 
+			- is a business that sells certificates to other businesses, so that they can be used in various applications;
+			- most applications trust certificates that come from common public CAs (GoDaddy, VeriSign, Entrust)
+		Private CA
+			- allows a company to create a private Public Key Infrastructure
+			- the benefit - you don't need to pay for the certificates that are created
+
+The first CA that is installed is the root CA. 
+The root CA has its own certificate used to digitally sign any certificates that it creates. 
+The signature is stored in the Issuer field of ANY certificates the CA creates. 
+The root CA has a self-signed certificate, because it is the first in the chain. 
+Once a root CA creates the subordinate CAs, it should be taken offline to prevent compromise. 
+
+Registration authority (RA)
+Accepts certificate requests from clients and validates the entity requesting the certificate
+
+The repository is the database that stores the certificates and the public keys. It should be available to all the participants and is usually stored in an LDAP-compliant directory.
+
+Certificate life-cycle
+
+1. Request
+2. Certificate
+3. Renewal
+4. Suspension and revocation
+5. Destruction
+
+Certificate revocation is done in one of two ways
+
+1. Certificate revocation lists - set up by the CA, published at regular itntervals and downloaded by the applications to check before using a certificate
+2. OCSP - Online Certificate Status Protocol
+
+Other important terms:
+	- recovery agent - the entity within an organization that can decrypt the information in case the employee with the key leaves the organization
+	- key archiving - back-up of keys; it is done by multiple people; out of a pool of N people, M people are required to participate in the backup; this is known
+	  as M of N control (2 of 3 control) 
+	- key escrow - handing over the encryption keys to a third party for decrypting the data (e.g. LEA);
+
+Trust Models and Trust Paths
+
+In order not to need to issue certificates for a different organization, you can create trust between two different CAs, so that each CA trusts the cert issued by the other CA. This is referred as cross-certificate
+
+Trust path is the path from the end-user certificate to the subordinate CA(s) to the root CA.
+
+How SSL works:
+	1. Client sends request for a HTTPS page (on port 443);
+	2. Server sends the public key
+	3. Client validates the certificate (not expired or revoked)
+	4. Client creates a session key and encrypts it with the server's public key
+	5. Server decrypts the session key with the private key and uses it to encrypt the traffic to the client
+
+How Digital Signatures Work
+
+1. Bob creates a hash of the message
+2. Bob encrypts the hash with the private key
+3. Alice decrypts the hash with the public key
+4. Alice calculates the hash and compares it with the one sent by Bob
+
+
+CHAPTER XIV - Physical Security
+
+CHAPTER VX - Risk Analysis
+
+The Risk Analysis process
+	1. Identify assets
+			a. Hardware and software
+			b. Company information and data
+			c. The building
+			d. Inventory and cash
+			e. Personnel
+			f. Reputation and branding
+			g. Computer systems and services
+
+	2. Identify vulnerabilities and threats for each asset
+			a. Vulnerabilities
+					- no system hardening
+					- no physical security
+					- no security controls on data
+					- no administrative controls on data
+					- no back-up
+					- no high-availability
+					- no patch management process
+			b. Threats
+					- theft
+					- inside hack
+					- outside hack
+					- natural disasters
+					- hardware failure
+					- fraud
+	3. Analyze impact
+			- loss of revenue or business opportunity
+			- loss of money due to cost to fix
+			- loss of production
+			- employee safety
+			- company reputation
+			- loss of customers' trust / confidence
+			- failure to comply with regulations
+	4. Prioritize threats
+	5. Identify mitigation techniques
+	6. Evaluate residual risks
+
+
+Risks associated with:
+		 - cloud computing - the services are hosted by a third party, which may be in violation of compliance
+		 - virtualization - if the host hardware failes, you lose all the services running on the VMs hosted on that machine (high availability VM clusters) 
+
+Types of risk analysis
+	a. qualitative - determines the risk and mitigation techniques without actually calculating the loss as a dollar figure
+			Risk = probability x loss
+	b. quantitative - you calculate the dollar loss for the risk; it is critical because the management want to see dollar figures that justify the implementation 					  of a security control to protect that asset
+Terms used in quantitative risk analysis
+	- SLE - Single Loss Expectancy - how much money will the company lose each time the threat occurs
+	- EF - exposure factor - the percentage of the asset value you expect to lose if the threat occurs
+	- ALE - annual loss expectancy - how much money will you lose each year with that asset
+	- ARO - annual rate of occurence - how many times a year with the threat occur
+
+SLE = value ($) x EF (%)
+ALE = SLE ($) x ARO
+
+Risk Mitigation Strategies
+
+Approaches
+	- mitigate (backup)
+	- accept (make the upper-management sign)
+	- transfer (insurance)
+	- avoid (do not sell products online)
+	- deter (threaten legal action)
+
+Strategies
+	- enforce technology security controls
+	- change management
+	- incident management
+	- rights and permissions reviews
+	- perform routine audits
+	- enforce policies and procedures
+
+CHAPTER XVI - Disaster Recovery and Business Continuity
+
+An organization needs to have a Business Continuity Plan (BCP). The Disaster Recovery Plan (DRP) is a part of the BCP.
+The Business Impact Assessment (BIA) is the initial phase of creating the BCP.
+
+Back-ups:
+There are three types:
+	- full back-up
+	- differential - backs-up what was changed since the last full back-up; and does not clear the archiving bit (includes all the data from the last full back-up 					 to the present time)
+	- incremental - backs-up what was changed since the last full or incremental back-up and clears the archiving bit
+
+
+High availability and fault tolerance
+
+Fault tolerance does not give high availability, but it helps with it. To have HA, you need to eliminate every single point of failure.
+
+CHAPTER XVII - Introduction to Computer Forensics
+
+Evidence must be:
+		- sufficient: must prove a fact by itself without other supporting evidence to prove the point
+		- competent: must have been legally obtained
+		- relevant: must be related and have meaning to the case
+
+
+Types of evidence:
+		- real (physical) evidence: the murder weapon
+		- direct evidence: testimony from a witness who has seen / experienced the event firsthand
+		- documentary evidence: printed documents, contracts, invoices a.s.o.
+		- demonstrative evidence: involves presenting a physical object that displays the results of some form of event occuring
+
+If you start a text in Notepad and put the text ".LOG" at the beginning, it will automatically log the time for each entry. 
+
+Passwords:
+	- generate a dictionary from the registry to attempt finding passwords
+	- use Cain and Abel
+	- use Snadboy's Revelation to uncover "starred" or obfuscated passwords
+
+Evidence collection workflow
+
+	1. Seize the evidence
+	2. Acquire the evidence
+		a. Static images (use a write blocker)
+		b. Live images (including memory; may allow access to encrypted drives)
+	3. Verify the Evidence
+	4. Analyze the Evidence
+		a. File filtering
+		b. RAID Arrays
+		c. Network traffic and logs
+		d. Witnesses
+		e. Big Data analysis
+	5. Report on findings
+
+Where to find evidence:
+Order of volatility: RAM > Swap > HDD > CD-ROM / DVD-ROM
+
+
+Tools
+	Acquisition tools
+		1. Secure wipe the target storage
+		2. Acquire image
+			a. disk-to-image
+			b. disk-to-disk
+			c. image-to-disk
+	Analysis tools
+		- ProDiscover
+		- Encase and Forensics Toolkit
+	Live Analysis tools
+		- Helix - can capture the memory content of a Windows system
+	Hex editors
+		- review the file headers
+	Mobile Forensics
+
+
+Incident Response Team
+	Team leader
+	Technical specialist(s)
+	Documentation specialist
+	Legal advisor
+
+CHAPTER XVIII - Security Assessments and Audits
+
+Security assessments include: 
+	- risk assessment
+	- threat assessment
+	- configuration assessment 
+	- vulnerability assessment
+	- penetration testing
+
+Risk assessment - covered in chapter XV
+Threat assessment - a part of Risk assessment that has to do with... assessing risks
+Configuration assessment - having a checklist of best practices and seeing if those are adhered to:
+	- All systems: patch management and hardening
+	- File server: authentication, permissions and the principle of least privilege
+	- Web server: SSL / TLS enabled, logging and authenticatin (if applicable)
+	- SMTP Server: behind a firewall, SMTP Relaying disabled, A/V and SPAM filtering
+	- DNS Server: two separate solutions - one for internal resolution and one for external resolution; the external DNS server should be in the DMZ and should allow zone transfers to secondary DNS servers only. 
+	- Routers: console, auxiliary and Telnet passwords configured, SSH instead of Telnet, ACLs enabled
+	- Firewalls: implicit deny to all traffic; only traffic specifically whitelisted will be allowed
+	- Switches: console, auxiliary and Telnet passwords configured; port security; VLANs
+	- Employees: test (bait with USB drives, CDs) , Social Engineer
+	- Physical security: disabled CMOS boot from optical drive, classified systems locked and with USB disabled
+
+Vulnerability assessment checks, amongst others for:
+	- Unused accounts, 
+	- Administrative accounts, 
+	- Unpatched OS;
+	- Unpatched software;
+	- Vulnerable software
+
+	Considerations when performing a Vulnerabilty Assessment:
+		- it is considered a passive and non-intrusive test of the security controls;
+		- aims to identify vulnerabilities, lack of security controls;
+		- can be credentialed (authenticated) or non-credentialed (non-authenticated)
+		- needs to account for False Positives
+
+Penetration testing aims to:
+	- verify that a threat exists;
+	- bypass the security controls;
+	- actively test security controls;
+	- exploit vulnerabilities
+
+	Types:
+		- Black-box
+		- White-box
+		- Gray-box
+
+When performing a penetration test, you should follow the phases of the hacking process: 
+	- profiling
+	- scanning and enumeration
+	- gaining access
+	- maintaining access
+	- covering tracks.
+
+
+
+Assessment techniques
+
+	Baseline reporting
+	Code review
+	Determine the attack surface
+	Architecture (in which ring does an app run)
+	Design reviews
+
+Performing a Security Assessment:
+	Methodologies:
+		OVAL - Open Vulnerability and Assessment Language
+		OCTAVE - Operationally Critical Threat, Asset and Vulnerability Evaluation (is a type of evaluation performed internally be the organization)
+		OWASP - Open Web Application Security Project
+
+
+CHAPTER XIX - Understanding Monitoring and Auditing
+
+Monitoring tools
+
+	System commands:
+		Windows commands
+			- netstat (-ano)
+			- net sesssion
+			- tasklist
+			- taskkill
+			- whoami
+			- net statistics server
+			- net statistics workstation
+			- net user
+			- net share
+		Linux commands
+			- ps -a
+			- kill
+			- ls -l
+			- last
+
+Logging and Auditing
+
+Auditing - monitoring the actions on a system for security purposes
+Logging - recording all the activity that occurs on a system
+
+
+The four major steps to configuring auditing are
+1. Decide which events to audit.
+2. Decide whether you care about the success or failure of the event.
+3. Configure auditing.
+4. Review the audit logs on a regular basis.
+
+Popular areas to audit
+	- Security applications
+	- DNS
+	- Performance
+	- Access
+	- Firewall
+	- A/V
+	- Proxy
+	- Wireless
+	- User access and rights
+	- Storage and retention policies
+	- Group Policies
+
+
+
+
+#####################################################################################################
+
+
+
+
+
+Comptia Security+ Videos
+
+VLAN = The same Broadcast Domain
+To connect a router with a switch that has multiple VLANs, you don't need more than one physical interface. You can use a trunking protocol, such as 802.1Q (Quiet) which allows multiple VLANs to communicate with the router via the same physical connection / interface.
+
+The switch knows which device (MAC) is connected to which port by looking at the frames sent by that device. They are stored in the CAM table.
+
+Infinite loop prevention techniques:
+	L2 - STP - Spanning Tree Protocol
+	   - Flood Guards (e.g. if Broadcast frames are > 50% then do not forward them)
+	L3 - TTL - Time-to-Live
+	   - Vendor-specific protections
+
+
+On a router or firewall, even if there is an implicit "deny any", some admins add an explicit "deny any" at the end of the ACL, in order to log the dropped packet count.
+
+ICMP - Protocol #1 - Assistant Layer 3 Protocol
+TCP - Protocol #6
+UDP - Protocol #17
+
+IPv6 - 
+- 128 bits in length; 8 groups of 4 hex characters each separated by colons.
+- Globally routable IPv6 addresses start with 2xxx or 3xxx
+- There's a link-local-routable address that starts with FE80
+- ARP is replaced with Neighbour Discovery Protocol.
+
+
+NetBIOS
+137/UPD - Name services
+138/UDP - Datagram services
+139/TCP - Session services
+
+FTP
+Active FTP Server
+Control port: 21/TCP
+Data port: 20/TCP
+
+Passive FTP Server
+Client initiates both control port (on port 21) and the data port (dynamic)
+
+
+POPv3 - 110
+IMAP - 143
+
+With WPA2-Enterprise you can use PEAP (Protected Extensible Authentication Protocol) - which enables the use of TLS - validates the wireless network
+With PEAP - you can have the client-side certificate for authenticating the user and server-side certificate to authenticate the network / server
+LEAP - Cisco invention; uses a modified version of MS-CHAP
+WLC - Wireless LAN Controller
+
+
+RISK: The possibility of a threat to exploit a vulnerability to cause loss.
+
+Control types:
+	Technical - firewall, router, IPS a.s.o
+	Management - risk assessment, vulnerability assessment, security policy
+	Operational - Change management
+
+MTBF = Mean Time Between Failures - Reliability
+MTTF = Mean Time To Failure - Reliability for non-repairable systems
+MTTR = Mean Time To Restore / Repair 
+
+RTO - Recovery Time Objective -  how soon do you need the resource up and running
+RPO - Recovery Point Objective - how far back you want to go back in time with the restoration (in other words, what would be the most recent restore point that you have; and the smaller the RPO, the more aggresive fault toleration, back-up you need to have)
+
+
+BPA - Business Parter Agreement
+ISA - Interconnection Security Agreement
+
+Forensics
+
+SPR = Stimulus - Pause - Response
+
+
+Incident Response
+
+	1. Triage
+	2. Investigation
+	3. Containment (Isolation)
+	4. Remediation
+	5. 
+
+
+JUMPED TO Video #30 - Authentication Services and Protocols
+
+
+Authentication = Identification (username) + Verification(password)
+Triple A = Authentication / Authorization / Accounting (Auditing / Accountability)
+
+TACACS > XTACACS > TACACS+ (proprietary to Cisco, closed) - Terminal Access Controller Access Control System
+
+RADIUS, DIAMETER and TACACS+ are Triple-A / AAA protocols. 
+Kerberos is an Authentication protocol. PORT 88
+
+	Kerberos has a Ticketing Granting Service - used to grant tickets for access to server / resource
+	Kerberos uses a Key Distribution Center
+	M$ AD uses Kerberos as an Authentication protocol
+	The communication between the user and the accessed resources uses symmetrical encryption
+
+LDAP (port 389) is NOT encrypted. 
+Secure LDAP (use SSL/TLS) - port 636
+
+SAML - Security Assertion Markup Language - authenticate once, use multiple separate vendors
+The authentication and authorization is shared with the other vendors
+From the SAML perspective, 
+		- the user is called a "PRINCIPAL"
+		- the primary company / logon is called the "IDENTITY PROVIDER"
+		- the other sites that are getting the authentication information about the user are called "SERVICE PROVIDERS"
+
+
+Authenticator factors:
+	- something you know
+	- something you have
+	- something you are
+	- somewhere you are
+	- something you do
+OTPs:
+	TOTP - Time-based One-Time Password
+	HOTP - Hash-based One-Time Password - is based on events - login attempt #1 gives OTP#1 a.s.o. (HMAC - Hash )
+
+Authentication system errors
+	- False rejection rate (FRR) - Type I error;
+	- False acceptance rate (FAR) - Type II error
+
+The Cross-over Error Rate (CER, or Equal Error Rate - EER) is the point of intersection between the FAR and the FRR curves intersect
+
+CAC - Common Access Card
+SmartCard - can store Private Keys
+
+
+Single Sign-On vs. Password Synchronization
+
+Federation and Transitive trust / authentication
+
+Access Control Types:
+
+Mandatory Access Control - for example with access to sensitive data - label the data
+Role-Based Access Control - e.g Groups; it is focused on Job Functions
+Discretionary Access Control - The owner of some data gives discretionary access to that data 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+CompTIA Security+ Things to improve
+
+iSCSI and FCoE and SANs / NAS-es
+TFTP is port 69
+Collision domains
+SMB Protocol
+Due care, dilligence, process
+Birthday attack
+Pharming
+
+
+
+Network Security
+Access Control and Identity Management
+
+Chapter 11: 
+
+Chapter 10 - Error types in Biometric systems
+Type I - False Reject Rate
+Type II - False Acceptance Rate
+
+
+L2TP uses IPSEC for encryption. Others don't
+Microsoft Point-to-Point Encryption (MPPE) is used with PPTP to provide encryption.
+
+
+Smurf Attack - Spoof IP and send ping to broadcast
+Ping-of-death - Very large ICMP packets that can't be processed
+LDAP Injection 
+
+
+TCP Wrappers are a feature on a Linux-based host that allows control of access to different services. 
+
+There can't be quantitative analysis without ALE, SLE and ARO. If it has dollar figures, without that, it's Business Impact Analysis.
+
+Incremental / differential Back-ups
+
+Audit logs contain failed logon attempts
+
+
+How DNS zone transfers work
+
+EFS - requires NTFS and can encrypt individual files. 
+
+TPM - Trusted Platform Module is a computer chip on a system that stores the cryptographic keys that are used to encrypt data. Applications that use passwords to encrypt data are susceptible to dictionary attacks, while TPM has a dictionary attack prevention module built in. In Windows 7/2008, BitLocker supports using TPM to store the key. Keep in mind that to use it, you must have a TPM-supported BIOS
+
+HSM - The Hardware Security Module is a card that is added to a system that contains a crypto-processor to perform asymmetric cryptographic functions at the hardware level. It also contains chips that store the crypto-keys to be used by the system.
+
+
+Policies are not part and are not developed with the Business Contiuity Plan. Policies are created waaaaaay before. 
+
+ICMP is a protocol along the lines of TCP and UDP. Therefore it does not rely on them for transport, it does not use port numbers and is not limited to Layer 3.
+
